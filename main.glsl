@@ -1,4 +1,4 @@
-// https://twigl.app/?ol=true&ss=-NQz7D7vMscXiTPg4GqC
+// https://twigl.app/?ol=true&ss=-NQzQXR99fUaSYlVRJLt
 
 precision mediump float;
 
@@ -48,7 +48,7 @@ void main() {
   float depth = 1.0 + pos.y;
   vec3 color = mix(vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 1.0), pow(depth, 10.0));
   
-  float noiseScale = 5.0;
+  float noiseScale = 25.0;
   float noiseAmplitude = 5.0;
   float noiseOffset = time * 6.5;
   float n = noise(pos.xy * noiseScale + vec2(noiseOffset));
