@@ -1,4 +1,4 @@
-// https://twigl.app/?ol=true&ss=-NQz4-BEENRw6xPUAssf
+// https://twigl.app/?ol=true&ss=-NQz7D7vMscXiTPg4GqC
 
 precision mediump float;
 
@@ -15,7 +15,7 @@ float rand(vec2 co) {
 float noise(vec2 st) {
   vec2 i = floor(st);
   vec2 f = fract(st);
-  vec2 u = f * f * (3.0 - 2.0 * f);
+  vec2 u = f * f * (3.0 - 2.0 * f) * 1.0;
   return mix(
     mix(rand(i + vec2(0.0, 0.0)), rand(i + vec2(1.0, 0.0)), u.x),
     mix(rand(i + vec2(0.0, 1.0)), rand(i + vec2(1.0, 1.0)), u.x),
@@ -48,12 +48,12 @@ void main() {
   float depth = 1.0 + pos.y;
   vec3 color = mix(vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 1.0), pow(depth, 10.0));
   
-  float noiseScale = 300.0;
-  float noiseAmplitude = 50.0;
-  float noiseOffset = time * 0.5;
+  float noiseScale = 5.0;
+  float noiseAmplitude = 5.0;
+  float noiseOffset = time * 6.5;
   float n = noise(pos.xy * noiseScale + vec2(noiseOffset));
   pos += vec3(n * noiseAmplitude, 0.0, n * noiseAmplitude);
   
-  color = mix(color, vec3(0.0, 0.0, 0.0), n);
+  color = mix(color, vec3(0.0, 0.2, 0.2), n * 0.9);
   gl_FragColor = vec4(color, 1.0);
 }
